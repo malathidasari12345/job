@@ -1,0 +1,29 @@
+.footer {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.footer .icon {
+  color: #28a745 !important;
+  font-size:20px;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  .footer h2 {
+    font-size: 1rem;
+  }
+
+  .footer p {
+    font-size: 0.85rem;
+  }
+}

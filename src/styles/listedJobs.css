@@ -1,0 +1,52 @@
+.listed-jobs {
+    padding: 20px;
+  }
+  
+  .job-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: space-between;
+  }
+  
+  .job-card {
+    flex: 1 1 30%; 
+    margin-bottom: 20px;
+    border: 1px solid #28a745 !important; 
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(128, 246, 139, 0.1);
+  }
+  .job-card {
+    position: relative;
+  }
+  button{
+    background-color: #28a745 !important;
+  }
+  .green-dot {
+    position: absolute;
+    right:0px;
+    width: 20px;
+    height: 20px;
+    background-color:#28a745;
+  }
+  
+  .job-card .company-logo {
+    object-fit: cover;
+  }
+  
+  .job-card .ms-3 {
+    margin-left: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .job-card {
+      flex: 1 1 45%; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .job-card {
+      flex: 1 1 100%; 
+    }
+  }
+  
