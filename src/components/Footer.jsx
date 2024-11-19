@@ -9,7 +9,7 @@ const Footer = () => {
       <Container>
         <Row className="text-center text-md-start"> 
           <Col xs={12} md={3} className="mb-4">
-            <h2>About Company</h2>
+            <h3>About Company</h3>
             <p>
               JobConnect is a platform that connects job seekers with employers.
             </p>
@@ -25,20 +25,20 @@ const Footer = () => {
           </Col>
 
           <Col xs={12} md={3} className="mb-4">
-            <h2>For Candidates</h2>
+            <h3>For Candidates</h3>
             <p>Browse Jobs</p>
             <p>Browse Category</p>
             <p>Candidate Dashboard</p>
             <p>Job Alert</p>
           </Col>
           <Col xs={12} md={3} className="mb-4">
-            <h2>For Employers</h2>
+            <h3>For Employers</h3>
             <p>Browse Candidates</p>
             <p>Browse Category</p>
             <p>Employer Dashboard</p>
           </Col>
           <Col xs={12} md={3} className="mb-4">
-            <h2>Quick Links</h2>
+            <h3>Quick Links</h3>
             <p>About Us</p>
             <p>Contact Us</p>
             <p>Privacy Policy</p>

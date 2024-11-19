@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const BlogList = () => {
-  // Sample blog data focused on job awareness
   const blogData = [
     {
       id: 1,
@@ -29,12 +29,6 @@ const BlogList = () => {
       description: 'A guide to becoming a full stack developer, covering the essential skills and tools to handle both frontend and backend work.',
     },
   ];
-
-  // Handler for "Know More" button click
-  const handleKnowMore = (blogId) => {
-    // alert(`More details for Blog ID: ${blogId}`);
-  };
-
   return (
   <>
  <h1 className="section-title">Popular Blogs</h1>
@@ -54,13 +48,15 @@ const BlogList = () => {
           <Card.Subtitle className="mb-2 text-muted">{blog.author}</Card.Subtitle>
           <Card.Text className="text-muted">{blog.location}</Card.Text>
           <Card.Text>{blog.description}</Card.Text>
+          <Link to={`/blog/${blog.id}`} style={{ textDecoration: "none" }}>
           <Button 
             variant="success" 
-            onClick={() => handleKnowMore(blog.id)}
             style={{ backgroundColor: 'green', borderColor: 'green' }}
           >
             Know More
           </Button>
+          </Link>
+          
         </Card.Body>
       </Card>
     ))}

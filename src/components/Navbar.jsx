@@ -10,7 +10,7 @@ function CustomNavbar() {
         {/* Left: Logo */}
           <Navbar.Brand href="#home" className="fw-bold" style={{ color: '#28a745', fontSize: '2.5rem' }}
            as={Link} to="/">
-             LOGO
+             Hire <span style={{color:"black"}}>Hub</span>
           </Navbar.Brand>
         {/* Toggle button for mobile view */}
         <Navbar.Toggle aria-controls="navbar-nav" />

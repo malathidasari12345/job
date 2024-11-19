@@ -12,6 +12,11 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import SignUp from './components/Signup';
 import Login from './components/Signin';
+import JobSectors from './pages/jobsectors';
+import SingleJob from './pages/SingleJob';
+import CompanyDetails from './pages/CompanyDetails';
+import SingleBlog from './pages/singleblog';
+import SingleCandidate from './pages/singleCandidate';
 
 const App = () => {
   return (
@@ -27,6 +32,11 @@ const App = () => {
         <Route path="/contact"  element={<Contact/>} />
         <Route path="/signup"  element={<SignUp/>} />
         <Route path="/signin"  element={<Login/>} />
+        <Route path ="/all-sectors" element={<JobSectors/>}/>
+        <Route path="/job-details/:id" element={<SingleJob/>} />
+        <Route path="/company-details/:id" element={<CompanyDetails/>} />
+        <Route path="/blog/:id" element={<SingleBlog/>} />
+        <Route path="/candidate-details/:id" element={<SingleCandidate />} />
       </Routes>
       <br></br>
       <Footer /> 

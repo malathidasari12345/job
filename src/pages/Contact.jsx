@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, ListGroup, Form, Button } from 'react-bootstrap';
-import '../styles/contact.css';  
+import '../styles/contact.css';
 
 const Contact = () => {
   return (
@@ -55,6 +55,24 @@ const Contact = () => {
               </Form>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+
+      {/* Map Section */}
+      <Row className="mt-5">
+        <Col>
+        <div className="map-container">
+                {/* Embed Google Maps */}
+                <iframe
+                  title="Company Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.2161178996294!2d78.55089597376916!3d17.35333060378813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99005a6b6089%3A0x78a0bd01ec6960f2!2sTechno%20Tide%20Technologies%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1731913539725!5m2!1sen!2sin"
+                  width="100%"
+                  height="350"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                ></iframe>
+              </div>
         </Col>
       </Row>
     </Container>

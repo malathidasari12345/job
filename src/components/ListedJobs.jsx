@@ -5,68 +5,48 @@ import logo1 from "../images/logo1.jpg";
 import logo2 from "../images/logo2.avif";
 import "../styles/listedJobs.css";
 import { FaMapMarkerAlt } from 'react-icons/fa';
-
 const jobData = [
   {
     id: 1,
     companyLogo: logo1,
     role: 'Software Engineer',
-    location: 'Madhapur, Hyd',
-    salary: '$800 - $1000',
+    location: 'Madhapur, Hyderabad',
+    time: '2 days ago',
+    salary: '$60,000 - $100,000',
     experience: '3+ years',
-    description: 'Looking for a passionate Software Engineer to join our team.',
+    description: 'Job opportunity for the role of Software Engineer at Tech Innovators Inc.',
   },
   {
     id: 2,
     companyLogo: logo2,
-    role: 'Product Manager',
-    location: 'Madhapur, Hyd',
-    salary: '$900 - $1200',
-    experience: '5+ years',
-    description: 'Exciting opportunity for a Product Manager to lead the team.',
+    role: 'Project Manager',
+    location: 'Gachibowli, Hyderabad',
+    time: '3 days ago',
+    salary: '$50,000 - $80,000',
+    experience: '3+ years',
+    description: 'Job opportunity for the role of Project Manager at Green Earth Solutions.',
   },
   {
     id: 3,
     companyLogo: logo1,
     role: 'UI/UX Designer',
-    location: 'Madhapur, Hyd',
-    salary: '$7000 - $9000',
-    experience: '2+ years',
-    description: 'Join our design team to craft beautiful and user-friendly digital products.',
-  },
-  {
-    id: 4,
-    companyLogo: logo2,
-    role: 'Data Scientist',
-    location: 'Madhapur, Hyd',
-    salary: '$1000 - $13000',
-    experience: '4+ years',
-    description: 'We are looking for a Data Scientist to analyze and interpret complex data.',
-  },
-  {
-    id: 5,
-    companyLogo: logo1,
-    role: 'Frontend Developer',
-    location: 'Madhapur, Hyd',
-    salary: '$7500- $9500',
+    location: 'Banjara Hills, Hyderabad',
+    time: '4 days ago',
+    salary: '$45,000 - $75,000',
     experience: '3+ years',
-    description: 'Passionate Frontend Developer needed to build dynamic, responsive websites.',
-  },
-  {
-    id: 6,
-    companyLogo: logo2,
-    role: 'Marketing Manager',
-    location: 'Madhapur, Hyd',
-    salary: '$8000 - $11000',
-    experience: '5+ years',
-    description: 'Looking for a Marketing Manager to lead innovative campaigns and strategies.',
-  },
+    description: 'Job opportunity for the role of UI/UX Designer at Creative Minds Studio.',
+  }
 ];
+
+
 
 const ListedJobs = () => {
   return (
     <div className="listed-jobs">
-      <h1 className='section-title'>Listed Jobs</h1>
+      <center>
+      <h6 style={{color: "#28a745", fontWeight: "bold", fontStyle: "italic", borderBottom: "none"}}>Recent Job</h6>
+      </center>
+      <h1 className='section-title'>Popular Listed Jobs</h1>
       <div className="job-cards">
         {jobData.map((job) => (
           <Card key={job.id} className="job-card">
@@ -93,6 +73,13 @@ const ListedJobs = () => {
           </Card>
         ))}
       </div>
+<center>
+    <Link to ="findjob">
+      <Button className="mt-3 mb-4  custom-button" style={{ fontSize: "1.2rem" }}>
+        Browse All Jobs
+       </Button>
+      </Link>
+</center>
     </div>
   );
 };

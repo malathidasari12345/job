@@ -1,12 +1,16 @@
 .hero {
-    background-image: url('../images/job background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
+  background-image: 
+    linear-gradient(rgba(0, 124, 50, 0.7), rgba(0, 124, 50, 0.7)), 
+    url('../images/job background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  padding: 40px 0;
+}
   .hero-content {
     padding: 20px;
-    background: rgba(12, 57, 23, 0.5); 
     border-radius: 10px;
     width:100%; 
     height: auto;
@@ -17,18 +21,18 @@
   .search-button {
     display: inline-flex;
     align-items: center;
+    text-align:center;
     background-color:#28a745 !important;
     border:1px solid#28a745 !important;
-    color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
     font-weight: bold;
   }
   .search-input:focus {
-    border-color: white; 
-    outline:white;
-    border-color: white; 
+    border-color:gray; 
+    outline:gray;
+    border-color:gray; 
     box-shadow: none; 
 }
 .search-button:hover {
