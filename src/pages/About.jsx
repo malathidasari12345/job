@@ -4,6 +4,11 @@ import team from "../images/job background.jpg";
 
 const About = () => {
   return (
+    <>
+    <div className="hero1 text-center mb-4">
+        <h1>About US</h1>
+      </div>
+   
     <Container className="my-5">
       {/* About Company Section */}
       <section className="mb-5">
@@ -68,6 +73,7 @@ const About = () => {
         </Row>
       </section>
     </Container>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, InputGroup, Row, Col, Card, Button } from 'react-bootstrap';
 import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -7,14 +7,18 @@ import logo2 from "../images/logo2.avif";
 import "../styles/find.css";
 
 const Company = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [industry, setIndustry] = useState('');
+  const [companySize, setCompanySize] = useState('');
+  const [revenueRange, setRevenueRange] = useState('');
   const companyData = [
     {
       id: 1,
       companyLogo: logo1,
       name: 'Tech Innovators Inc.',
       location: 'Madhapur, Hyderabad',
-      industry: 'Technology',
-      size: '500-1000 Employees',
+      Industry: 'Technology',
+      size: '50-200 Employees',
       revenue: '$10M - $20M',
       description: 'A leading tech company specializing in AI and cloud solutions. Focused on innovation and cutting-edge technology.',
       jobs: [
@@ -31,9 +35,9 @@ const Company = () => {
       companyLogo: logo2,
       name: 'Green Earth Solutions',
       location: 'Gachibowli, Hyderabad',
-      industry: 'Environmental Technology',
+      Industry: 'Environmental Technology',
       size: '200-500 Employees',
-      revenue: '$5M - $15M',
+      revenue: '$5M - $10M',
       description: 'Pioneering sustainable technology with eco-friendly solutions and a strong commitment to the environment.',
       jobs: [
         {
@@ -49,9 +53,9 @@ const Company = () => {
       companyLogo: logo1,
       name: 'Creative Minds Studio',
       location: 'Banjara Hills, Hyderabad',
-      industry: 'Design & Development',
-      size: '50-200 Employees',
-      revenue: '$2M - $8M',
+      Industry: 'Design & Development',
+      size: '10-50 Employees',
+      revenue: '$1M - $5M',
       description: 'A digital agency that specializes in UI/UX design, branding, and web development for clients globally.',
       jobs: [
         {
@@ -67,9 +71,9 @@ const Company = () => {
       companyLogo: logo2,
       name: 'Data Analytics Corp.',
       location: 'Kukatpally, Hyderabad',
-      industry: 'Data Analytics',
-      size: '1000+ Employees',
-      revenue: '$20M - $50M',
+      Industry: 'Data Analytics',
+      size: '1-10 Employees',
+      revenue: '0 -$1M',
       description: 'Experts in big data analytics, providing insights and solutions to Fortune 500 companies.',
       jobs: [
         {
@@ -86,9 +90,9 @@ const Company = () => {
       companyLogo: logo1,
       name: 'Rapid Dev Solutions',
       location: 'Jubilee Hills, Hyderabad',
-      industry: 'Software Development',
+      Industry: 'Software Development',
       size: '10-50 Employees',
-      revenue: '$1M - $5M',
+      revenue: '$20M+',
       description: 'An agile software development company that delivers scalable and responsive web applications.',
       jobs: [
         {
@@ -104,9 +108,9 @@ const Company = () => {
       companyLogo: logo2,
       name: 'Bright Future Marketing',
       location: 'HiTech City, Hyderabad',
-      industry: 'Marketing',
-      size: '500-800 Employees',
-      revenue: '$15M - $25M',
+      Industry: 'Marketing',
+      size: '500+ Employees',
+      revenue: '$5M - $10M',
       description: 'A marketing agency focusing on digital campaigns, SEO, and brand management for startups and established businesses.',
       jobs: [
         {
@@ -118,6 +122,18 @@ const Company = () => {
       ],
     },
   ];
+
+  const filteredCompanies = companyData.filter((company) => {
+    return (
+      (searchQuery === '' || company.name.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (industry === '' || company.Industry === industry) &&
+      (companySize === '' || company.size === companySize) &&
+      (revenueRange === '' || company.revenue === revenueRange)
+    );
+  });
+  const note = ()=>{
+    alert("please Login to add new Company")
+  }
   
 
   return (
@@ -135,39 +151,52 @@ const Company = () => {
               <Row className="mb-4">
                 <Col xs={12}>
                   <InputGroup>
-                    <Form.Control type="text" placeholder="Company Name" className="search-input" style={{padding:"15px"}}/>
+                    <Form.Control type="text" placeholder="Company Name"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                     className="search-input" style={{padding:"15px"}}/>
                   </InputGroup>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col xs={12}>
-                  <Form.Select className='text-muted' style={{padding:"15px"}}>
+                  <Form.Select className='text-muted'
+                  value={industry}
+                  onChange={(e) => setIndustry(e.target.value)}
+                   style={{padding:"15px"}}>
                     <option>Select Industry</option>
                     <option>Technology</option>
-                    <option>Sustainability</option>
-                    <option>Design</option>
-                    <option>Analytics</option>
+                    <option>Environmental Technology</option>
+                    <option>Design & Development</option>
+                    <option>Data Analytics</option>
+                    <option>Software Development</option>
                     <option>Marketing</option>
                   </Form.Select>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col xs={12}>
-                  <Form.Select className='text-muted' style={{padding:"15px"}}>
+                  <Form.Select className='text-muted' 
+                   value={companySize}
+                   onChange={(e) => setCompanySize(e.target.value)}
+                  style={{padding:"15px"}}>
                     <option>Company Size</option>
-                    <option>1-10</option>
-                    <option>10-50</option>
-                    <option>50-200</option>
-                    <option>200-500</option>
-                    <option>500+</option>
+                    <option>1-10 Employees</option>
+                    <option>10-50 Employees</option>
+                    <option>50-200 Employees</option>
+                    <option>200-500 Employees</option>
+                    <option>500+ Employees</option>
                   </Form.Select>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col xs={12}>
-                  <Form.Select className='text-muted' style={{padding:"15px"}}>
+                  <Form.Select className='text-muted' 
+                  value={revenueRange}
+                  onChange={(e) => setRevenueRange(e.target.value)}
+                  style={{padding:"15px"}}>
                     <option>Revenue Range</option>
-                    <option>0 - $1M</option>
+                    <option>0 -$1M</option>
                     <option>$1M - $5M</option>
                     <option>$5M - $10M</option>
                     <option>$10M - $20M</option>
@@ -182,13 +211,13 @@ const Company = () => {
           <Col xs={12} md={8}>
             <div className="listed-companies">
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <span>We have found <b style={{color:"#28a745"}}>{companyData.length}</b> Companies</span>
-                <Button variant="primary">
+                <span>We have found <b style={{color:"#28a745"}}>{filteredCompanies.length}</b> Companies</span>
+                <Button  onClick={note} variant="primary">
                   Add Your Company
                 </Button>
               </div>
               <Row>
-                {companyData.map((company) => (
+                {filteredCompanies.map((company) => (
                   <Col xs={12} md={4} key={company.id} className="mb-4">
                     <Card className="company-card">
                       <Card.Body>

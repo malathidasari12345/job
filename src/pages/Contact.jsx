@@ -4,7 +4,13 @@ import '../styles/contact.css';
 
 const Contact = () => {
   return (
+    <>
+    <div className="hero1 text-center mb-4">
+        <h1>Contact US</h1>
+      </div>
+   
     <Container className="my-5">
+
       <h1 className="text-center mb-5 contact-header">Get in Touch with Us</h1>
 
       <Row>
@@ -76,6 +82,7 @@ const Contact = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

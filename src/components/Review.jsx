@@ -25,40 +25,50 @@ const CustomerReview = () => {
     }
   ];
 
+  // State to track the current index of the displayed card
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Function to handle the left arrow click
+  const handlePrevClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? reviews.length - 1 : prevIndex - 1));
+  };
+
+  // Function to handle the right arrow click
+  const handleNextClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === reviews.length - 1 ? 0 : prevIndex + 1));
+  };
 
   return (
     <div className="container mt-5">
-     <h1 className="section-title">Reviews</h1>
+      <h1 className="section-title">Reviews</h1>
       <div className="d-flex justify-content-center align-items-center mb-4">
-        <div
-          className="slider-btn"
-        >
+        {/* Left Arrow */}
+        <div className="slider-btn" onClick={handlePrevClick}>
           <FaArrowLeft size={20} />
         </div>
 
+        {/* Review Container */}
         <div className="d-flex justify-content-center" style={{ width: '100%' }}>
           <div className="review-container">
-            {reviews.map((review) => (  
-              <div key={review.id} className="card-container">
-                <Card className="review-card text-center">
-                  <Card.Body>
-                    <Image
-                      src={review.image}
-                      roundedCircle
-                      className="review-image"
-                    />
-                    <Card.Title className="review-name">{review.name}</Card.Title>
-                    <Card.Text className="review-description">{review.description}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </div>
-            ))}
+            {/* Display only the current review based on the index */}
+            <div key={reviews[currentIndex].id} className="card-container">
+              <Card className="review-card text-center">
+                <Card.Body>
+                  <Image
+                    src={reviews[currentIndex].image}
+                    roundedCircle
+                    className="review-image"
+                  />
+                  <Card.Title className="review-name">{reviews[currentIndex].name}</Card.Title>
+                  <Card.Text className="review-description">{reviews[currentIndex].description}</Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
         </div>
 
-        <div
-          className="slider-btn"
-        >
+        {/* Right Arrow */}
+        <div className="slider-btn" onClick={handleNextClick}>
           <FaArrowRight size={20} />
         </div>
       </div>

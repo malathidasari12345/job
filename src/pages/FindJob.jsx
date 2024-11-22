@@ -1,10 +1,10 @@
-import React from 'react'
-import { Form, InputGroup, Row, Col, Card, Button } from 'react-bootstrap'
-import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Form, InputGroup, Row, Col, Card, Button } from 'react-bootstrap';
+import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import logo1 from "../images/logo1.jpg";
 import logo2 from "../images/logo2.avif";
-import "../styles/find.css"
+import "../styles/find.css";
 
 const FindJob = () => {
   const jobData = [
@@ -15,8 +15,10 @@ const FindJob = () => {
       location: 'Madhapur, Hyderabad',
       time: '2 days ago',
       salary: '$60,000 - $100,000',
-      experience: '3+ years',
+      experience: 'Freshers',
+      category: 'Development',
       description: 'Job opportunity for the role of Software Engineer at Tech Innovators Inc.',
+      jobType: 'Full Time',
     },
     {
       id: 2,
@@ -26,7 +28,9 @@ const FindJob = () => {
       time: '3 days ago',
       salary: '$50,000 - $80,000',
       experience: '3+ years',
+      category: 'Development',
       description: 'Job opportunity for the role of Project Manager at Green Earth Solutions.',
+      jobType: 'Full Time',
     },
     {
       id: 3,
@@ -35,8 +39,10 @@ const FindJob = () => {
       location: 'Banjara Hills, Hyderabad',
       time: '4 days ago',
       salary: '$45,000 - $75,000',
-      experience: '3+ years',
+      experience: '+1 year',
+      category: 'Development',
       description: 'Job opportunity for the role of UI/UX Designer at Creative Minds Studio.',
+      jobType: 'Freelance',
     },
     {
       id: 4,
@@ -46,7 +52,9 @@ const FindJob = () => {
       time: '1 week ago',
       salary: '$60,000 - $100,000',
       experience: '3+ years',
+      category: 'Data Science',
       description: 'Job opportunity for the role of Data Analyst at Data Analytics Corp.',
+      jobType: 'Contract base',
     },
     {
       id: 5,
@@ -56,7 +64,9 @@ const FindJob = () => {
       time: '1 week ago',
       salary: '$60,000 - $95,000',
       experience: '3+ years',
+      category: 'Development',
       description: 'Job opportunity for the role of Full-Stack Developer at Rapid Dev Solutions.',
+      jobType: 'Full Time',
     },
     {
       id: 6,
@@ -65,14 +75,60 @@ const FindJob = () => {
       location: 'HiTech City, Hyderabad',
       time: '2 days ago',
       salary: '$45,000 - $75,000',
-      experience: '3+ years',
+      experience: '+1 year',
+      category: 'Marketing',
       description: 'Job opportunity for the role of Digital Marketing Specialist at Bright Future Marketing.',
+      jobType: 'Part Time',
     }
   ];
+
+  // State for filter criteria
+  const [jobTitle, setJobTitle] = useState('');
+  const [location, setLocation] = useState('');
+  const [category, setCategory] = useState('');
+  const [jobType, setJobType] = useState([]);
+  const [experience, setExperience] = useState([]);
+  const [sortOrder, setSortOrder] = useState('');
+  const sortJobs = (jobs) => {
+    if (sortOrder === 'Ascending') {
+      // Sort jobs by role in ascending alphabetical order
+      return [...jobs].sort((a, b) => a.role.localeCompare(b.role));
+    } else if (sortOrder === 'Descending') {
+      // Sort jobs by role in descending alphabetical order
+      return [...jobs].sort((a, b) => b.role.localeCompare(a.role));
+    }
+    // If no sorting is selected, return the original list
+    return jobs;
+  };
+  const sortedJobs = sortJobs(jobData)
+
+  // Function to filter jobs based on criteria
+  const filteredJobs = sortedJobs.filter((job) => {
+    // Filter by job title (case-insensitive)
+    const matchesTitle = job.role.toLowerCase().includes(jobTitle.toLowerCase());
+    
+    // Filter by location (case-insensitive)
+    const matchesLocation = job.location.toLowerCase().includes(location.toLowerCase());
+
+    // Filter by category if selected
+    const matchesCategory = category ? job.category === category : true;
+
+    // Filter by job type if selected
+    const matchesJobType = jobType.length > 0 ? jobType.includes(job.jobType) : true;
+
+    // Filter by experience if selected
+    const matchesExperience = experience.length > 0 ? experience.includes(job.experience) : true;
+
+    return matchesTitle && matchesLocation && matchesCategory && matchesJobType && matchesExperience;
+  });
+
+  // Handling checkbox changes for job type and experience
+  const handleCheckboxChange = (e, setState) => {
+    const { value, checked } = e.target;
+    setState((prev) => checked ? [...prev, value] : prev.filter((item) => item !== value));
+  };
   
-  
-  console.log(jobData);
-  
+
 
   return (
     <>
@@ -92,7 +148,13 @@ const FindJob = () => {
                     <InputGroup.Text>
                       <FaSearch style={{ color: 'gray' }} />
                     </InputGroup.Text>
-                    <Form.Control type="text" placeholder="Job Title" className="search-input" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Job Title"
+                      className="search-input"
+                      value={jobTitle}
+                      onChange={(e) => setJobTitle(e.target.value)}
+                    />
                   </InputGroup>
                 </Col>
               </Row>
@@ -102,54 +164,77 @@ const FindJob = () => {
                     <InputGroup.Text>
                       <FaMapMarkerAlt style={{ color: 'gray' }} />
                     </InputGroup.Text>
-                    <Form.Control type="text" placeholder="Location" className="search-input" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Location"
+                      className="search-input"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                    />
                   </InputGroup>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col xs={12}>
-                  <Form.Select>
-                    <option>Select Categories</option>
-                    <option>Data Science</option>
-                    <option>Development</option>
-                    <option>Marketing</option>
+                  <Form.Select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option value="">Select Categories</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Development">Development</option>
+                    <option value="Marketing">Marketing</option>
                   </Form.Select>
                 </Col>
               </Row>
               <hr />
               <h2>Job Type</h2><br />
               <div className='check'>
-                <input type="checkbox" /> Contract base<br /><br />
-                <input type="checkbox" /> Freelance<br /><br />
-                <input type="checkbox" /> Full Time<br /><br />
-                <input type="checkbox" /> Internship<br /><br />
-                <input type="checkbox" /> Part Time<br /><br />
+                {['Contract base', 'Freelance', 'Full Time', 'Internship', 'Part Time'].map((type) => (
+                  <div key={type}>
+                    <input
+                      type="checkbox"
+                      value={type}
+                      checked={jobType.includes(type)}
+                      onChange={(e) => handleCheckboxChange(e, setJobType)}
+                    /> {type}<br /><br />
+                  </div>
+                ))}
               </div>
 
               <hr />
               <h2>Experience</h2><br />
-              <div  className='check'>
-                <input type="checkbox" /> Freshers<br /><br />
-                <input type="checkbox" /> +1 Year<br /><br />
-                <input type="checkbox" /> 3+ Years<br /><br />
+              <div className='check'>
+                {['Freshers', '+1 year', '3+ years'].map((exp) => (
+                  <div key={exp}>
+                    <input
+                      type="checkbox"
+                      value={exp}
+                      checked={experience.includes(exp)}
+                      onChange={(e) => handleCheckboxChange(e, setExperience)}
+                    /> {exp}<br /><br />
+                  </div>
+                ))}
               </div>
             </Form>
           </Col>
-
 
           {/* Job Listings Section */}
           <Col xs={12} md={8}>
             <div className="listed-jobs">
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <span>We have found {jobData.length} Jobs</span>
-                <Form.Select style={{ width: '150px' }}>
+                <span>We have found <b style={{color:"#28a745"}}>{filteredJobs.length}</b> Jobs</span>
+                <Form.Select style={{ width: '150px' }}
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+                >
                   <option>Sort By</option>
                   <option>Ascending</option>
                   <option>Descending</option>
                 </Form.Select>
               </div>
               <Row>
-                {jobData.map((job) => (
+              {filteredJobs.map((job) => (
                   <Col xs={12} md={4} key={job.id} className="mb-4">
                     <Card className="job-card">
                       <Card.Body>
@@ -177,6 +262,6 @@ const FindJob = () => {
       </div>
     </>
   );
-}
+};
 
 export default FindJob;

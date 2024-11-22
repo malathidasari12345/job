@@ -14,7 +14,7 @@ const jobData = [
     location: 'Madhapur, Hyderabad',
     time: '2 days ago',
     salary: '$60,000 - $100,000',
-    experience: '3+ years',
+    experience: 'Freshers',
     companyName: 'Tech Innovators Inc.',
     contactEmail: 'hr@techsolutions.com',
     contactPhone: '+1 234 567 890',
@@ -33,7 +33,7 @@ const jobData = [
     location: 'Gachibowli, Hyderabad',
     time: '3 days ago',
     salary: '$50,000 - $80,000',
-    experience: '3+ years',
+    experience: '3+ Years',
     companyName: 'Green Earth Solutions',
     contactEmail: 'hr@techsolutions.com',
     contactPhone: '+1 234 567 890',
@@ -52,7 +52,7 @@ const jobData = [
     location: 'Banjara Hills, Hyderabad',
     time: '4 days ago',
     salary: '$45,000 - $75,000',
-    experience: '3+ years',
+    experience: '1+ Year',
     companyName: 'Creative Minds Studio',
     contactEmail: 'hr@techsolutions.com',
     contactPhone: '+1 234 567 890',
@@ -71,7 +71,7 @@ const jobData = [
     location: 'Kukatpally, Hyderabad',
     time: '1 week ago',
     salary: '$60,000 - $100,000',
-    experience: '3+ years',
+    experience: '3+ Years',
     companyName: 'Data Analytics Corp.',
     contactEmail: 'hr@techsolutions.com',
     contactPhone: '+1 234 567 890',
@@ -90,7 +90,7 @@ const jobData = [
     location: 'Jubilee Hills, Hyderabad',
     time: '1 week ago',
     salary: '$60,000 - $95,000',
-    experience: '3+ years',
+    experience: '1+ Year',
     companyName: 'Rapid Dev Solutions',
     contactEmail: 'hr@techsolutions.com',
     contactPhone: '+1 234 567 890',
@@ -129,6 +129,9 @@ const SingleJob = () => {
   if (!job) {
     return <h2 style={{fontSize:"4rem", textAlign:"center"}}>Job not found</h2>;
   }
+  const note = () => {
+    alert("please login to apply this job");
+  };
 
   return (
     <div style={{ backgroundColor: '#f2f2f2', padding: '20px', minHeight: '100vh' }}>
@@ -159,7 +162,7 @@ const SingleJob = () => {
                     <small className="text-muted">{job.location}</small>
                   </div>
                 </div>
-                <Button variant="success" size="md" className="me-2">
+                <Button variant="success" size="md" className="me-2" onClick={note}>
                   Apply Now
                 </Button>
                 <div>

@@ -4,6 +4,7 @@ import TopCategories from '../components/TopCategories'
 import ListedJobs from '../components/ListedJobs'
 import CustomerReview from '../components/Review'
 import Blog from '../components/Blog'
+import TestimonialSection from '../components/Review'
 
 
 
@@ -14,7 +15,8 @@ const Home = () => {
      
       <TopCategories/>
       <ListedJobs/>
-      <CustomerReview/>
+      {/* <CustomerReview/> */}
+      <TestimonialSection/>
      
       <Blog/>
     </div>
